@@ -1,0 +1,140 @@
+body
+{
+background:url("http://74211.com/wallpaper/picture_big/In-Blue-Only-Yet-There-Really-Are-Changes-You-Won-t-Ever-be-Bored-in-Vision-HD-Single-Color-Wallpaper.jpg");	
+	
+}
+
+
+.rm-container{
+	
+	text-align: center;
+	
+	margin-top: 1px;
+	margin-right: 400px;
+    margin-left: 350px;
+	width: 700px;
+	background-color: #ffffff;
+	margin-bottom: 10px;
+	
+}
+
+#rm-face{
+	
+	background-color:#00394d; 
+	width:213px;
+	height: 150px;
+	
+	
+}
+.rm-container .rm-title
+{
+	font-family: monospace;
+	height:20px;
+}
+.rm-message{
+	
+padding-left: 10px;
+
+padding-top: 10px;
+
+	min-height: 500px;
+}
+
+.rm-newmessage{
+	
+margin-top: 15px;	
+padding-bottom: 10px;	
+padding-left: 12px;
+padding-right: 10px;
+width: 483px;
+top:450px;	
+
+}
+
+.rm-users{
+	
+ padding-left: 5px;
+ width: 160px;
+ padding-right:20px;
+ background-color:#33ccff;
+ 	
+ min-height: 300px;	
+ padding-top:7px; 
+ 	
+ 
+	
+}
+
+#msg{
+	width: 170px;
+	height: 20px;
+	padding-left: 2px;
+	background-color:#0066ff;
+}
+
+
+#msgcontent{
+	
+	padding-left: 2px;
+	
+	
+}
+#messages{
+	min-height: 290px;
+	
+}
+
+#usermsg{
+	
+
+width:390px;
+min-height: 70px;	
+border-radius: 12px;	
+border-bottom-left-radius: 40px;
+top: 38px;
+background-color: cadetblue;
+
+}
+
+#msgbox{
+	
+	margin-left: 16px;
+	
+}
+
+.rm-userbox .username{
+float: center;
+	width: 213px;
+	text-align: center;
+	padding-top: 5px;
+
+	text-decoration-color: #ffffff;
+	
+}
+
+#roomname{
+
+width: 400px;	
+margin-left: 24px;	
+text-align: left;
+
+margin-bottom: 10px;	
+
+}
+
+#circle{
+	
+	width: 30px;
+    height: 30px;
+	margin-top:15px; 
+    
+    -moz-border-radius: 30px;
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+	float:centre;
+	border-color: floralwhite;
+	
+}
+
+
+	

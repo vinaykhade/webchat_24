@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/room.css">
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+</head>
+	
+<script>
+	 $(function(){
+	 	var host='{{config.host}}';
+		var messages=io.connect(host + '/messages');
+		var roomNum={{room_number}};
+	    var userName='{{user.fullname}}';
+	    var userPic='{{user.profilePic}}';
+	   
+		messages.on('connect',function(){
+		 	console.log('Connection Established!');
+		 	messages.emit('joinroom',{room:roomNum,user:userName,userPic:userPic});
+		 })
+		 
+		 
+		$(document).on('keyup','#newmessage',function(e){
+		if(e.which===13 && $(this).val()!=''){
+				messages.emit('newMessage',{
+					room_number:roomNum,
+					user:userName,
+					userPic:userPic,
+					message:$(this).val()
+					
+				})
+				
+				updateMessageFeed(userPic,$(this).val());
+				$(this).val('');
+		}
+		
+		}) 
+		
+		messages.on('messagefeed',function(data){
+			var msgs=JSON.parse(data);
+			updateMessageFeed(msgs.userPic,msgs.message);
+		
+		})
+
+		function updateMessageFeed(userPic,message){
+			
+		var str='<p class="navbar-text navbar-right" style="width:50%">';
+			str+='<li>';
+			str+='<div class="msgbox">';
+			str+='<div class="pic">';
+			str+='<img src="' + userPic + '" style="width:8%;height:8%;float:left" >';
+			str+='</div>';
+			str+='<div class="msg" ><p id="usermsg"><font color="aliceblue">'+message+'</font></p></div>';
+			str+='</div>';
+			str+='</li>';
+			str+='</p>';	
+		
+		
+		
+		$(str).hide().prependTo($('#messages')).slideDown(200);	
+		
+			
+		}
+	 	
+	messages.on('updateUsersList',function(data){
+		var userlist=JSON.parse(data);
+		$('#users').html('');
+		
+		for(var n=0;n<userlist.length;n++){
+			 var str = '<li>';
+					str+='	<div id="msgbox">';
+					str+='	<div class="pic">';
+					str+='	<img src="' + userlist[n].userPic + '" style="width:12%;height:20px;float:left" >';
+					str+='	</div>';
+					str+='	<div class="msg" id="msg" ><p><font color="aliceblue">' + userlist[n].user + '</font></p></div>';
+					str+='	</div>';
+					str+='  </li>';
+			
+			
+		
+			$(str).prependTo($('#users'));				
+						
+		}
+		
+	})
+		setInterval(function(){
+			messages.emit('updateList',{room:roomNum});
+		},15000);
+	 })
+	</script>
+	
+	
+<body>
+	<div class="rm-container">
+		<h1 class="rm-title">WebChat</h1>
+		<hr>
+		<div class="rm-roomname" id="roomname">
+			<p><h4>&nbsp;&nbsp;{{room_name}}</h4></p>
+		</div>
+		
+		<div class="row" id="msgcontent">
+  			<div class="col-xs-12 col-sm-6 col-md-8" style="overflow-y:scroll;height:450px;">
+				<div class="left-side">
+
+				<div class="rm-message">
+			
+				<ul class="nav nav-pills nav-stacked" id="messages">
+			<!--	<p class="navbar-text navbar-right" style="width:50%">
+				<li>
+					<div class="msgbox">
+						<div class="pic">
+						<img src="{{user.profilePic}}" style="width:8%;height:8%;float:left" >
+						</div>
+						<div class="msg" ><p style="background-color:azure;width:350px;border-bottom-right-radius:10px;border-top-right-radius:10px;">Hi there this looks nice!
+							my name is khan and i am not a terrorist</p></div>
+					</div>
+				</li>
+				</p>	-->
+				</ul>
+		
+		</div>
+				</div>
+				
+			</div>
+  
+			
+			<div class="col-xs-6 col-md-4 " style="height:450px;width:228px;">
+			<div id="rm-face">
+				<div class="rm-userbox">
+				<img id="circle" src="{{user.profilePic}}" class="userPic" >
+					
+				<h6 class="username" style="clear:both"><font color="#ffffff">{{user.fullname}} </font></h6>
+				<h5><a href="/chatrooms"><font color="#000000">More Chatrooms</font></a></h5>
+				<h5><a href="/logout"><font color="#000000">Logout</font></a></h5>
+			</div>
+			</div>
+				<div class="rm-users" style="height:405px;width:213px;">
+				<ul class="nav nav-pills nav-stacked" id="users">
+				 <!-- <li>
+					<div class="userbox">
+						<div class="pic">
+						<img src="{{user.profilePic}}" style="width:12%;height:20px;float:left" >
+						</div>
+						<div class="msg" id="msg" ><p ><font color="aliceblue">{{user.fullname}}</font></p></div>
+					</div>
+				  </li>
+				-->	
+					
+					
+			
+			</ul>
+		</div>
+			
+			</div>
+		</div>
+		
+		
+		
+		<div class="rm-newmessage"  >
+			<input type="text" id="newmessage" class="form-control"  style="height:80px" placeholder="Type here in your message here and press enter!" autocomplete="off">
+		</div>
+		
+		
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+</body>
+</html>

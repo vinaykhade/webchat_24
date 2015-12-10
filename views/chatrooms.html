@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/chatroom.css">
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+	 $(function(){
+	 	var host='{{config.host}}';
+		var socket=io.connect(host + '/roomlist');
+		 
+		 socket.on('connect',function(){
+		 	console.log('Connection Established!');
+		 })
+		 
+		 socket.on('roomupdate',function(data){
+		 	var procData=JSON.parse(data);
+			 $('#roomlist').html('');
+			for(var i=0;i<procData.length;i++){
+				var str='<p class="navbar-text navbar-right" style="width:50%"><a href="room/'+procData[i].room_number +'" class="navbar-link"><li>'+procData[i].room_name +'</li></a>				</p>'  ;	
+				$('#roomlist').prepend(str);
+			}
+		 
+		 })
+		 
+		 
+		 $(document).on('click','#create',function(){
+		 	var room_name=$('#newRoom').val();
+			 if(room_name!=''){
+				 var room_number=parseInt(Math.random()*10000);
+				 socket.emit('newroom',{room_name:room_name,room_number:room_number}); // creates a new event which will be heard back in the nodejs app where rest of the functionality will reside
+				 $('#newRoom').val('');
+			 }
+			
+		 })
+	 
+	 })
+	</script>
+	
+</head>
+ <body>
+	
+	 <div class="cr-container">
+	 	<h1 class="cr-title">WebChat</h1>
+		 <hr>
+		 <div id="cr-face">
+			<div class="cr-userbox" >
+			<form class="form-inline">
+			<img id="circle" src="{{user.profilePic}}" id="profilepic" >
+				<h3 class="username" style="clear:both"><font color="#ffffff">{{user.fullname}} </font> |  <a href="/logout"><font color="#000000">Logout</font></a></h3>
+			</form>
+			</div>
+		 </div>	 
+			
+		<div class="cr-newroom" >
+			<div class="input-group">
+	 		<input type="text" id="newRoom" class="form-control" placeholder="Type here.." autocomplete="off">
+				 <span class="input-group-btn">
+			<button type="button"  class="btn btn-primary" id="create">Create Room</button>
+				</span>
+			</div>
+		</div>
+		
+		 <div class="cr-roomlist">
+			  <div class="col-xs-12 col-sm-6 col-md-8" style="overflow-y:auto;height:300px;">
+  				<ul class="nav nav-pills nav-stacked" id="roomlist">
+				<!--	<p class="navbar-text navbar-right" style="width:50%"><a href="#" class="navbar-link"><li>NodeJS</li></a></p>
+					<p class="navbar-text navbar-right" style="width:50%"><a href="#" class="navbar-link"><li>Front End Development</li></a></p>
+					<p class="navbar-text navbar-right" style="width:50%"><a href="#" class="navbar-link"><li>Machine Learning</li></a></p>
+					<p class="navbar-text navbar-right" style="width:50%"><a href="#" class="navbar-link"><li>Gesture Recognition</li></a></p>
+				-->
+				
+				</ul> 
+			 
+		 </div>
+		 </div>
+	</div>
+	
+	
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+ </body>
+</html>

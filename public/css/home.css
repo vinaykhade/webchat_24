@@ -1,0 +1,46 @@
+body
+{
+
+background-color:dodgerblue;	
+}
+
+#face{
+	
+	background-color:#00394d; 
+	height: 150px;
+	margin-bottom: 5px;
+	margin-top: 2px;
+	padding-top: 42px;
+}
+
+.hm-container{
+	
+text-align: center;
+margin-top: 250px;
+
+	
+    margin-bottom: 100px;
+    margin-right: 400px;
+    margin-left: 400px;
+	padding-bottom: 45px;
+	
+	border-radius: 15px;
+	background-color:floralwhite;
+	
+	
+}
+
+.hm-container .hm-title{
+	
+	font-family: monospace;
+	height: 20px;
+	padding-top: 2px;
+	
+	
+}
+.hm-container .horizon{
+	
+	border-width: 4px;
+	width: 566px;
+	
+}

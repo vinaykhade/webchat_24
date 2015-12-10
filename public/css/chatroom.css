@@ -1,0 +1,106 @@
+body
+{
+background:url("http://74211.com/wallpaper/picture_big/In-Blue-Only-Yet-There-Really-Are-Changes-You-Won-t-Ever-be-Bored-in-Vision-HD-Single-Color-Wallpaper.jpg");	
+	
+}
+
+.cr-container{
+	
+	text-align: center;
+	
+	margin-right: 400px;
+    margin-left: 400px;
+	margin-top: 30px;
+	width: 600px;
+	height: 600px;
+	background-color: #ffffff;
+}
+
+#cr-face{
+	
+	background-color:#00394d; 
+	
+	
+}
+.cr-container .cr-title{
+	font-family: monospace;
+	height:20px;
+}
+
+
+.cr-container .cr-userbox .form-inline .username{
+	 
+	background-color:#0097cc;	
+float: center;
+	width: 600px;
+	text-align: center;
+	
+	
+	
+}
+
+
+	
+.cr-container .cr-roomlist ul{
+	
+	border: 2px inset darkcyan;
+	
+	margin-top: 250px;
+	margin-bottom: auto;
+	max-width: 400px; 
+    margin: 0 auto;
+	
+	 
+}
+
+.cr-container .cr-newroom{
+	
+	
+	margin-top: 250px;
+	margin-bottom: auto;
+	max-width: 400px; 
+    margin: 0 auto;
+}
+
+
+.cr-newroom{
+padding-top: 10px;
+padding-bottom: 10px;
+		
+	
+}
+
+.cr-roomlist{
+padding-bottom: 10px;
+padding-top:10px; 
+height: 300px;	
+padding-left: 78px;
+width: 743px;
+}
+
+#roomlist{
+	min-height: 295px;
+	
+	
+}
+
+#roomlist li{
+	border-width: 1px;
+	background-color:beige;
+	
+	text-align: left;
+}
+
+#circle{
+width: 60px;
+    height: 60px;
+	margin-top:15px; 
+    
+    -moz-border-radius: 60px;
+    -webkit-border-radius: 60px;
+    border-radius: 60px;
+	float:centre;
+	border-color: floralwhite;
+	
+	
+}
