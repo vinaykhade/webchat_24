@@ -60,18 +60,7 @@ var router=express.Router();
 		//res.end();
 	})
 	
-	var exceptionOccured = false;
-
-	process.on('uncaughtException', function(err) {
-    console.log('Caught exception: ' + err);
-    exceptionOccured = true;
-    process.exit();
-	});
-
-	process.on('exit', function(code) {
-    if(exceptionOccured) console.log('Exception occured');
-    else console.log('Kill signal received');
-	});
+	
 	
 	/*router.get('/setcolor',function(req,res,next){
 		req.session.favColor="Red";
